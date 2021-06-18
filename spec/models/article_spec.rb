@@ -26,7 +26,7 @@ RSpec.describe Article, type: :model do
     end
 
     it 'should validate uniqueness of the slug' do
-      article = build :article
+      article = create :article
       invalid_article = build :article, slug: article.slug
       expect(invalid_article).not_to be_valid
     end
