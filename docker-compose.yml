@@ -1,0 +1,36 @@
+version: "3.9"
+
+x-settings: &default-env
+  POSTGRES_HOST: db
+  POSTGRES_DB_PROD: ruby_prod
+  POSTGRES_DB_DEV: ruby_dev
+  POSTGRES_DB_TEST: ruby_test
+  POSTGRES_USER: ruby
+  POSTGRES_PASSWORD: ruby
+
+services:
+  db:
+    image: postgres
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    environment:
+      <<: *default-env
+      POSTGRES_DB: ruby_prod
+    ports:
+      - 5432:5432
+  web:
+    build:
+      context: .
+      dockerfile: ruby.Dockerfile
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - .:/code
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
+    environment:
+      <<: *default-env
+
+volumes:
+  db-data:

@@ -1,0 +1,19 @@
+default: &default
+  adapter: postgresql
+  pool: <%= ENV.fetch('RAILS_MAX_THREADS') { 5 } %>
+  timeout: 5000
+  host: <%= ENV.fetch('POSTGRES_HOST') { '127.0.0.1' } %>
+  username: <%= ENV.fetch('POSTGRES_USER') { 'ruby' } %>
+  password: <%= ENV.fetch('POSTGRES_PASSWORD') { 'ruby' } %>
+
+development:
+  <<: *default
+  database: <%= ENV.fetch('POSTGRES_DB_DEV') { 'ruby_dev' } %>
+
+test:
+  <<: *default
+  database: <%= ENV.fetch('POSTGRES_DB_TEST') { 'ruby_test' } %>
+
+production:
+  <<: *default
+  database: <%= ENV.fetch('POSTGRES_DB_PROD') { 'ruby_prod' } %>
