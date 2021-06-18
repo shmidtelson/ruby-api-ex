@@ -6,7 +6,11 @@ ruby '3.0.1'
 gem 'rails', '~> 6.1.3', '>= 6.1.3.2'
 gem 'pg'
 gem 'puma', '~> 5.0'
+
+# foreign libs
 gem 'active_model_serializers'
+gem 'kaminari'
+
 gem 'bootsnap', '>= 1.4.4', require: false
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
