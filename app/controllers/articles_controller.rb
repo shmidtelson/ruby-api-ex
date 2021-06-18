@@ -5,6 +5,7 @@ class ArticlesController < ApplicationController
                       .per(params[:per_page])
     render json: articles
   end
+
   def show
 
   end

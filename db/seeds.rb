@@ -5,3 +5,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Article.create((1..100).map { |n|
+  {
+    'title' => "Article name #{n}",
+    'content' => "Article content #{n}",
+    'slug' => "article-slug-#{n}"
+  }})
